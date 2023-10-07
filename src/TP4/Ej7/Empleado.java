@@ -1,4 +1,4 @@
-package TP4;
+package TP4.Ej7;
 
 public class Empleado extends Thread {
 

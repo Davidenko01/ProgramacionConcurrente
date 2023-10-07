@@ -1,4 +1,5 @@
-package TP4.Ej7;
+package TP5.EJ2;
+
 
 public class Mozo extends Thread {
     private String nombre;
@@ -9,7 +10,7 @@ public class Mozo extends Thread {
         this.laConfi = laConfi;
     }
 
-    public void run()  {
+    public void run() {
         while (true) {
             try {
                 laConfi.hacerHobbie();
@@ -24,12 +25,12 @@ public class Mozo extends Thread {
             }
             System.out.println("Pedido tomado");
             try {
-                Thread.sleep(10000);
+                Thread.sleep(5000);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
             System.out.println("Pedido listo");
-            laConfi.avisarQuePuedeComer();
+            laConfi.entregarBebida();
 
         }
 

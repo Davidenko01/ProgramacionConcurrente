@@ -1,4 +1,4 @@
-package TP4;
+package TP4.Ej7;
 
 import java.sql.SQLOutput;
 import java.util.concurrent.Semaphore;

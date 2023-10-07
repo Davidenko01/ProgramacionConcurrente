@@ -1,18 +1,18 @@
-package TP4.Ej7;
+package TP5.EJ2;
 
-public class Mozo extends Thread {
+public class Cocinero extends Thread {
     private String nombre;
     private Confiteria laConfi;
 
-    public Mozo(String nombre, Confiteria laConfi) {
+    public Cocinero(String nombre, Confiteria laConfi) {
         this.nombre = nombre;
         this.laConfi = laConfi;
     }
 
-    public void run()  {
+    public void run() {
         while (true) {
             try {
-                laConfi.hacerHobbie();
+                laConfi.cocinar();
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
@@ -22,14 +22,14 @@ public class Mozo extends Thread {
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            System.out.println("Pedido tomado");
+            System.out.println("Pedido comida tomado");
             try {
-                Thread.sleep(10000);
+                Thread.sleep(5000);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            System.out.println("Pedido listo");
-            laConfi.avisarQuePuedeComer();
+            System.out.println("Pedido comida listo");
+            laConfi.entregarComida();
 
         }
 
