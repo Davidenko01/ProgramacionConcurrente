@@ -23,15 +23,14 @@ public class Mozo extends Thread {
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            System.out.println("Pedido tomado");
+            System.out.println("Pedido bebida tomado");
             try {
                 Thread.sleep(5000);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            System.out.println("Pedido listo");
+            System.out.println("Pedido bebida listo");
             laConfi.entregarBebida();
-
         }
 
     }

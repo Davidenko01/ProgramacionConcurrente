@@ -25,32 +25,38 @@ public class Confiteria {
     }
 
     public void entregarBebida() {
+        System.out.println("SU BEBIDA ESTA LISTA SEÑOR, TOME");
         bebidaLista.release();
     }
 
     public void hacerHobbie() throws InterruptedException {
+        System.out.println("MOZO WEVEANDO");
         mozo.acquire();
     }
 
     public void cocinar() throws InterruptedException {
+        System.out.println("Cocinero WEVIANDO");
         cocinero.acquire();
     }
 
     public void entrarConfiteria() throws InterruptedException {
         confi.acquire();
-        System.out.println("Entra cliente");
+        System.out.println("Entra cliente "+Thread.currentThread().getName());
     }
 
     public void salirConfiteria() {
-        confi.release();
         System.out.println("Chau! Muy rico todo");
+        System.out.println(Thread.currentThread().getName()+" se va");
+        confi.release();
     }
 
     public void entregarComida() {
+        System.out.println("Su comida esta lista señor");
         comidaLista.release();
     }
 
     private void pedirAmbos() throws InterruptedException {
+        System.out.println("HOLA QUIERO COMER Y BEBER ALGO");
         pedirBebida();
         llamarAtencionCocinero();
         comidaLista.acquire();

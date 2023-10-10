@@ -21,6 +21,7 @@ public class Empleado extends Thread {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+        System.out.println("ITADAKIMASU");
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
