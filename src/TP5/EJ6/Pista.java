@@ -3,6 +3,7 @@ package TP5.EJ6;
 import java.util.concurrent.Semaphore;
 
 public class Pista {
+    /*
     private Semaphore torreDeControl = new Semaphore(0);
     private Semaphore pista = new Semaphore(0);
     private Semaphore permiso = new Semaphore(0);
@@ -23,4 +24,6 @@ public class Pista {
         torreDeControl.acquire(1);
 
     }
+
+     */
 }

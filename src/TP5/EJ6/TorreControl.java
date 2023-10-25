@@ -8,7 +8,7 @@ public class TorreControl extends Thread {
 
     public void run() {
         while (true) {
-            laPista.consederPermiso();
+            //laPista.consederPermiso();
         }
     }
 }

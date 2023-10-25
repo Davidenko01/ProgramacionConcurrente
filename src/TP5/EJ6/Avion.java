@@ -13,8 +13,8 @@ public class Avion extends Thread {
 
     public void run() {
         try {
-            laPista.solicitarPermiso(accion);
-            laPista.realizarAccion(accion);
+            //laPista.solicitarPermiso(accion);
+            //laPista.realizarAccion(accion);
             Thread.sleep(10000);
             System.out.println("MANIOBRA REALIZADA");
             if (accion.equals("Aterrizar")) {
