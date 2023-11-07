@@ -25,7 +25,10 @@ public class Ferry {
         System.out.println(Thread.currentThread().getName()+ " subió al ferry");
         lugaresOcupados++;
         pasajerosEsperando--;
-        this.notifyAll();
+        if (puedeZarpar()) {
+            enViaje = true;
+            this.notifyAll();
+        }
     }
 
     private boolean entra() {
@@ -38,20 +41,18 @@ public class Ferry {
         System.out.println(Thread.currentThread().getName()+ " subió al ferry");
         lugaresOcupados += 4;
         autosEsperando--;
-        this.notifyAll();
+        if (puedeZarpar()) {
+            enViaje = true;
+            this.notifyAll();
+        }
     }
 
     public synchronized void zarpar() throws InterruptedException {
-        if (autosEsperando == 0 && pasajerosEsperando == 0) {
-            System.out.println("NO HAY NADIE");
+        while (!enViaje || desembarcando) {
             this.wait();
-        } else {
-            while (!puedeZarpar() || desembarcando) {
-                this.wait();
-            }
-            enViaje = true;
-            System.out.println("El Ferry salió del puerto");
         }
+        System.out.println("El Ferry salió del puerto");
+
     }
 
     public synchronized void desembarcar() throws InterruptedException {

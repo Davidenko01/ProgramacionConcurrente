@@ -1,0 +1,21 @@
+package TP6.EJ1.IncisoC;
+
+public class Auto extends Thread {
+    private char direccion;
+    private Puente puente;
+    public Auto(String nombre, char laDireccion, Puente elPuente) {
+        super(nombre);
+        direccion = laDireccion;
+        puente = elPuente;
+    }
+
+    public void run() {
+        try {
+            puente.entrar(direccion);
+            Thread.sleep(5000);
+            puente.salir(direccion);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+}
