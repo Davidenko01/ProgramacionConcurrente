@@ -9,6 +9,8 @@ public class Puente {
     private Queue<Integer> colaSur = new LinkedList<>();
     private Queue<Integer> colaNorte = new LinkedList<>();
 
+    private Queue<Integer> ordenPuente = new LinkedList<>();
+
     private String turno = "";
 
     public Puente(int norte, int sur) {
@@ -25,14 +27,24 @@ public class Puente {
         }
     }
 
+    private boolean turnoNorte() {
+        return turno.equals("NORTE") && colaNorte.peek().equals(Integer.valueOf(Thread.currentThread().getName()));
+    }
+
+    private boolean turnoSur() {
+        return turno.equals("SUR") && colaSur.peek().equals(Integer.valueOf(Thread.currentThread().getName()));
+    }
+
     private void entrarNorte() throws InterruptedException {
         if (turno.isEmpty()) {
             turno = "NORTE";
         }
         colaNorte.add(Integer.valueOf(Thread.currentThread().getName()));
-        while (turno.equals("SUR")) {
+        while (!turnoNorte()) {
             this.wait();
         }
+        colaNorte.remove(Integer.valueOf(Thread.currentThread().getName()));
+        ordenPuente.add(Integer.valueOf(Thread.currentThread().getName()));
         System.out.println("Auto "+ Thread.currentThread().getName()+" entra puente hacia el NORTE");
     }
 
@@ -41,9 +53,11 @@ public class Puente {
             turno = "SUR";
         }
         colaSur.add(Integer.valueOf(Thread.currentThread().getName()));
-        while (turno.equals("NORTE")) {
+        while (!turnoSur()) {
             this.wait();
         }
+        colaSur.remove(Integer.valueOf(Thread.currentThread().getName()));
+        ordenPuente.add(Integer.valueOf(Thread.currentThread().getName()));
         System.out.println("Auto "+ Thread.currentThread().getName()+" entra puente hacia el SUR");
     }
 
@@ -57,10 +71,10 @@ public class Puente {
     }
 
     public void salirSur() throws InterruptedException {
-        while (colaSur.peek() != Integer.valueOf(Thread.currentThread().getName())) {
+        while (ordenPuente.peek() != Integer.valueOf(Thread.currentThread().getName())) {
             this.wait();
         }
-        colaSur.remove(Integer.valueOf(Thread.currentThread().getName()));
+        ordenPuente.remove(Integer.valueOf(Thread.currentThread().getName()));
         cantSur--;
         System.out.println("Auto "+ Thread.currentThread().getName()+" sale del puente hacia el SUR");
         if (cantSur == 0) {
@@ -70,10 +84,10 @@ public class Puente {
     }
 
     public void salirNorte() throws InterruptedException {
-        while (colaNorte.peek() != Integer.valueOf(Thread.currentThread().getName())) {
+        while (ordenPuente.peek() != Integer.valueOf(Thread.currentThread().getName())) {
             this.wait();
         }
-        colaNorte.remove(Integer.valueOf(Thread.currentThread().getName()));
+        ordenPuente.remove(Integer.valueOf(Thread.currentThread().getName()));
         cantNorte--;
         System.out.println("Auto "+ Thread.currentThread().getName()+" sale del puente hacia el NORTE");
         if (cantNorte == 0) {

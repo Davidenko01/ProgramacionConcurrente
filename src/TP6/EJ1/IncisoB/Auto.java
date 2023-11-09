@@ -12,7 +12,7 @@ public class Auto extends Thread {
     public void run() {
         try {
             puente.entrar(direccion);
-            Thread.sleep(10000);
+            Thread.sleep(5000);
             puente.salir(direccion);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
